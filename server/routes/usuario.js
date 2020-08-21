@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const _ = require('underscore');
-const { verificaToken } = require('../middlewares/autenticacion');
 const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuario');
+const { verificaToken } = require('../middleware/autenticacion');
 
 //El servidor es un objeto 
 
@@ -87,7 +87,6 @@ app.delete('/usuario/:id', [verificaToken], (req, res) => {
         });
     });
 });
-
 
 
 module.exports = app;
