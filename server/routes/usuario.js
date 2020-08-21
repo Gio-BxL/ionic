@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const _ = require('underscore');
+const { verificaToken } = require('../middlewares/autenticacion');
 const bcrypt = require('bcrypt');
 const Usuario = require('../models/usuario');
 
@@ -50,7 +51,7 @@ app.post('/usuario', (req, res) => {
 });
 
 
-app.put('/usuario/:id',  (req, res) => {
+app.put('/usuario/:id', [verificaToken], (req, res) => {
     let id = req.params.id;
     //let archivo = req.files.archivo;
     let body = _.pick(req.body, ['nombre', 'estado', 'email', ]);
@@ -70,7 +71,7 @@ app.put('/usuario/:id',  (req, res) => {
     });
 });
 
-app.delete('/usuario/:id',(req, res) => {
+app.delete('/usuario/:id', [verificaToken], (req, res) => {
     let id = req.params.id;
 
     Usuario.findByIdAndUpdate(id, { estado: false }, { new: true, runValidators: true, context: 'query' }, (err, resp) => {
@@ -86,6 +87,7 @@ app.delete('/usuario/:id',(req, res) => {
         });
     });
 });
+
 
 
 module.exports = app;
