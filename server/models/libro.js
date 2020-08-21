@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const Usuario = require('./usuario');
+
 const Categoria = require('./categoria');
 
 let Schema = mongoose.Schema;

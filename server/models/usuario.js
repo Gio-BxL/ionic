@@ -11,38 +11,26 @@ let Schema = mongoose.Schema;
 let usuarioSchema = new Schema({
     nombre: {
         type: String,
-        required: [true, 'El nombre es necesario']
+        required: [true, 'Por favor ingresa el nombre del usuario']
     },
-
     email: {
         type: String,
-        required: [true, 'El correo es necesario'],
-        unique: true
+        unique: true,
+        required: [true, 'Por favor ingresa el correo electronico']
     },
-
     password: {
         type: String,
-        required: [true, 'La contraseña es necesaria']
-    },
+        required: [true, 'Por favor ingresa la contraseña']
 
-    google: {
-        type: Boolean,
-        default: false
     },
-
-    role: {
-        type: String,
-        enum: rolesValidos,
-        default: 'USER_ROLE'
-    },
-
-    img: {
-        type: String
-    },
-
     estado: {
         type: Boolean,
         default: true
+    },
+    img: {
+        type: String,
+
+
     }
 });
 
